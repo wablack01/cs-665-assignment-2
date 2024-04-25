@@ -1,16 +1,19 @@
 
 | CS-665       | Software Design & Patterns |
 |--------------|----------------------------|
-| Name         | FIRST_NAME LAST_NAME       |
-| Date         | MM/DD/YYYY                 |
-| Course       | Fall / Spring / Summer     |
-| Assignment # |                            |
+| Name         | Walker Black               |
+| Date         | 02/22/2024                 |
+| Course       | Spring                     |
+| Assignment # | 2                          |
 
 # Assignment Overview
-Please add a paragraph or two overviewing the objectives of the assignment.
+The objective of this assignment is to create a delivery management system where when shops receive orders from
+customers, delivery requests are sent to drivers who may be able to deliver the order. Drivers are notified
+automatically of new orders and shops can seamlessly send delivery requests to all available drivers (regardless of
+who the drivers are or how many are currently active).
 
 # GitHub Repository Link:
-https://github.com/{YOUR_USERNAME}/cs-665-assignment-{ASSIGNMENT_NUMBER}
+https://github.com/wablack01/cs-665-assignment-2
 
 # Implementation Description 
 
@@ -19,11 +22,27 @@ For each assignment, please answer the following:
 
 - Explain the level of flexibility in your implementation, including how new object types can
 be easily added or removed in the future.
-- Discuss the simplicity and understandability of your implementation, ensuring that it is
-easy for others to read and maintain.
+  - My implementation separates the application's "user" classes (Shops and Drivers) from each other. This way Drivers
+  can accept DeliveryRequests from the DeliveryManager regardless of what class type sent them to the manager, and
+  shops can issue requests to the manager regardless of what class is accepting them from the manager. Additionally,
+  Drivers interact only with the DeliveryRequest objects rather than with the orders themselves. That way the
+  implementation of Order can change or DeliveryRequests can be for different classes entirely without affecting the
+  Driver class so long as the information available to the Driver class remains the same.
+- Discuss the simplicity and understandability of your implementation, ensuring that it is easy for others to read and 
+maintain.
+  - The classes/objects are designed to have limited scope so that each class has only the functionality required to
+  perform its tasks. Class, attribute, and method names clearly describe their purpose. Code is organized into relevant
+  packages and thoroughly commented.
 - Describe how you have avoided duplicated code and why it is important.
+  - Duplicate code was avoided by giving each class a distinct and non-overlapping role.
 - If applicable, mention any design patterns you have used and explain why they were
 chosen.
+  - I implemented the Observer pattern where Shops are publishers, Drivers are subscribers, and the DeliveryManager
+  is both a publisher and subscriber. In this application there are many subscribers (Drivers) who are interested in
+  frequent events issued by a publisher (Shop). This is the main problem the observer pattern aims to solve. I
+  implemented the intermediate class (DeliveryManager) so Drivers could subscribe to a DeliveryManager and be notified
+  of all delivery requests from Shops the manager subscribes to rather than needing to subscribe to each shop
+  individually.
 
 
 # Maven Commands
